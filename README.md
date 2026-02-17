@@ -1,16 +1,94 @@
-# React + Vite
+# 🌦️ Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dynamic weather application built using **React**, **Vite** and **Tailwind** that integrates with **WeatherAPI** to deliver real time weather data for any city worldwide. Implemented asynchronous data fetching using **REST API**, state management with hooks, and responsive UI components to ensure smooth performance across devices.
 
-Currently, two official plugins are available:
+## 📌 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search weather by city name
+- Current conditions including temperature, humidity, wind, AQI and weather condition
+- Error handling for invalid input / API failures
+- Responsive UI for mobile and desktop
 
-## React Compiler
+## 🧱 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend:** React (with Hooks & functional components)
+- **Styling:** Tailwind
+- **API:** WeatherAPI
+- **State Management:** REST API
 
-## Expanding the ESLint configuration
+## 📸 Screenshots
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![WeatherApp](https://github.com/user-attachments/assets/31ad4844-7321-4fe2-a695-71680b729717)
+
+## 📁 Project Structure
+```pgsql
+Weather_App/
+│
+├── public/                     # Static files
+│
+├── src/
+│   ├── assets/           
+│   │
+│   ├── components/             # Reusable UI components
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── Highlights.jsx
+│   │   └── Temp.jsx
+│   │
+│   ├── App.jsx                  # Root component
+│   ├── index.css                # Global styles
+│   └── Main.jsx                 # Entry point
+│
+├── .env                        # Environment variables
+├── index.html                  # Main HTML file
+├── package.json                # Project metadata & dependencies
+├── package-lock.json
+└── README.md
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node >= 14.x
+
+### 🛠️ Installation
+
+```bash
+git clone https://github.com/mohdkamran-khan/Syntecxhub_Weather_App.git
+cd Syntecxhub_Weather_App
+```
+### 1️⃣ Install dependencies:
+```bash
+npm install
+```
+### 2️⃣ Environment Variables
+
+Create a `.env` file in the root with:
+```env
+VITE_WEATHER_KEY=YOUR_API_KEY
+```
+### 3️⃣ Run Locally
+```bash
+npm start
+```
+## 📧 Contributing
+
+Contributions are welcome. If you want to contribute:
+
+1. Fork the repo
+2. Create a feature branch `git checkout -b feature/your-feature`
+3. Commit your changes `git commit -m "feat: add ..."`
+4. Push and open a pull request
+
+## 📄 License
+
+```
+This project is open-source and available under the [MIT License]
+```
+
+## 👨🏻‍💻 Author
+
+Mohd Kamran Khan | You can reach me at: [mohdkamrankhan.dev@gmail.com]
+
+🌐 **Portfolio:** [mohdkamran-khan.github.io/KAMRAN-portfolio](https://mohdkamran-khan.github.io/KAMRAN-portfolio/)
