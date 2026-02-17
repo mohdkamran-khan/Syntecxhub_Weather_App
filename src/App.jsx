@@ -8,33 +8,52 @@ function App() {
 
   const [city, setCity] = useState("New Delhi")
   const [weatherData, setWeatherData] = useState(null)
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const apiURL = `https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_WEATHER_KEY}&q=${city}&aqi=yes`;
 
   useEffect(() => {
-    fetch(apiURL)
-    .then(res => {
-      if(!res.ok){
-        throw new Error("Error")
+    const fetchWeather = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await fetch(apiURL);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data?.error?.message || "Failed to fetch weather");
+        }
+
+        setWeatherData(data);
+      } catch (err) {
+        setWeatherData(null);
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
-      return res.json()
-    })
-    .then(data => {
-      console.log(data)
-      setWeatherData(data)
-    })
-    .catch(e => {
-      console.log(e)
-    })
-  }, [city])
+    };
+
+    fetchWeather();
+  }, [city]);
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-200 to-blue-500">
+    <div className="min-h-[100dvh] flex flex-col bg-linear-to-br from-blue-200 to-blue-500">
       <Header />
-      <div className="w-full mx-auto max-w-6xl p-8 mb-8 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+      <div className="flex-1 w-full mx-auto max-w-6xl p-8 mb-8 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
         {/* Left Card */}
         <div className="bg-white/50 backdrop-blur-lg rounded-3xl shadow-2xl p-6 col-span-1">
-          {weatherData ? (
+          {loading && (
+            <div className="text-center text-slate-800">Loading weather...</div>
+          )}
+
+          {error && (
+            <div className="text-center text-red-600 font-medium">{error}</div>
+          )}
+
+          {!loading && !error && weatherData && (
             <Temp
               setCity={setCity}
               stats={{
@@ -49,10 +68,6 @@ function App() {
                 aqi: weatherData.current.air_quality.pm2_5,
               }}
             />
-          ) : (
-            <div className="text-white text-center text-lg">
-              Loading Weather...
-            </div>
           )}
         </div>
 
